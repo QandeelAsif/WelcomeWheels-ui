@@ -61,7 +61,7 @@ export default class MapScreen extends Component {
         console.log(this.state.initialPosition);
       },
       (error) => console.log('Error ' + JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000},
+      {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000},
     );
     //this.sendToServer()
   }
@@ -72,7 +72,8 @@ export default class MapScreen extends Component {
 
   getDistance= async () =>
 {
-  const userCoords =[this.state.coordinates.latitude, this.state.coordinates.longitude]
+  console.log("THE STATE",this.state)
+  const userCoords =[this.state.initialPosition.latitude, this.state.initialPosition.longitude]
   const driverCoords =[this.state.markerPosition.latitude, this.state.markerPosition.longitude]
 
     // get location of base
@@ -201,13 +202,13 @@ export default class MapScreen extends Component {
           <Text>Start Tracking</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             this.getPolyLineCoordinates('stop');
           }}
           style={styles.redButton}>
           <Text>Stop Tracking</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         
         <TouchableOpacity
           onPress={() => {
